@@ -200,7 +200,7 @@ td { vertical-align: top; }
 
 body{ background: #FFF; }
 
-#container{ height: 629px; width: 970px; margin: auto; background:url(../img/herald.png) no-repeat right #3781a8; margin-top: 10px;}
+#container{ height: 629px; width: 970px; margin-top: 10px;}
 
 header { color: #FFF; font-size: 15px; font-family: 'Lucida Sans', Lucida Grande, Verdana, Arial, Sans-Serif; /*font-family: Courier New Baltic,Courier New,Courier,monospace,Times New Roman,serif;*/ padding: 0 0 10px 20px; }
 	header p{ background-color: #c3190c; display: inline-block; *display: inline; *zoom: 1;}
