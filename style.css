@@ -13,7 +13,7 @@ header { color: #FFF; font-size: 15px; font-family: 'Lucida Sans', Lucida Grande
 	header a:hover { text-decoration: underline;}
 	
 h1, h2{ display: inline-block; *display: inline; *zoom: 1; font-weight: 100; color: #FFF;
-        background-color: #c3190c; font-size:1em;  }
+       /* background-color: #c3190c;*/ font-size:1em;  }
 
 
 
