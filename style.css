@@ -7,13 +7,12 @@ body{ background: #232937; }
 
 #container{ height: 629px; width: 970px; margin-top: 10px;}
 
-header { color: #FFF; font-size: 15px; font-family: 'Lucida Sans', Lucida Grande, Verdana, Arial, Sans-Serif; /*font-family: Courier New Baltic,Courier New,Courier,monospace,Times New Roman,serif;*/ padding: 0 0 10px 20px; }
-	header p{ /*background-color: #c3190c;*/ display: inline-block; *display: inline; *zoom: 1;}
+header { color: #FFF; font-size: 15px; font-family: 'Lucida Sans', Lucida Grande, Verdana, Arial, Sans-Serif; padding: 0 0 10px 20px; }
+	header p{ display: inline-block; *display: inline; }
 	header a, header a:hover, header a:visited{ color: #FFFFFF; text-decoration: none;}
 	header a:hover { text-decoration: underline;}
 	
-h1, h2{ display: inline-block; *display: inline; *zoom: 1; font-weight: 100; color: #FFF;
-       /* background-color: #c3190c;*/ font-size:1em;  }
+h1, h2{ display: inline-block; *display: inline; font-weight: 100; color: #FFF; font-size:1em;  }
 
 
 

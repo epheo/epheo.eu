@@ -12,11 +12,18 @@
         Histoire (la croissance, la croissance)
         Ma place au sein de la societe
         Les methodes Agiles
+            - StandUp meeting
+            - Repartition des taches: Backlog
+            - Gestion du temps: Ponderation des taches + BurnDown Chart
+            - Sprint planning
         Chiffres (la croissance, la croissance)
-
+            - Nombre croissant d'utilisateur
+            - Toujours + d'info donc + grosse infra`
+            - Nouvelle application media sociaux
+            ----> **Toujours + de serveurs**
 2. Contexte:
     Une transition vers la gestion progressive d'une infrastructure de grande echelle
-
+      
         Les differentes infrastructures de la societe
             - DI
                 prod
