@@ -1,11 +1,11 @@
 body{ background: #232937; }
 
-header { color: #FFF; font-size: 17px; font-family: 'Lucida Sans', Lucida Grande, Verdana, Arial, Sans-Serif; padding: 0 0 10px 20px; }
-	header p{ background: #901e1d; display: inline-block; *display: inline; padding: 2px;}
-	header a, header a:hover, header a:visited{ color: #FFFFFF; text-decoration: none;}
+header { color: #232937; font-size: 17px; font-family: 'Lucida Sans', Lucida Grande, Verdana, Arial, Sans-Serif; padding: 0 0 10px 20px; }
+	header p{ background: #FFF; display: inline-block; *display: inline; padding: 2px;}
+	header a, header a:hover, header a:visited{ color: #232937; text-decoration: none;}
 	header a:hover { text-decoration: underline;}
 	
-h1, h2{ display: inline-block; *display: inline; font-weight: 100; color: #FFF; font-size:1em; background: #901e1d; padding: 2px;}
+h1, h2{ display: inline-block; *display: inline; font-weight: 100; color: #232937; font-size:1em; background: #FFF; padding: 2px;}
 
 
 
