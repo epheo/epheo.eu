@@ -105,12 +105,13 @@ setprompt() {
   setopt prompt_subst
 
   if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-    p_host='%F{yellow}%M%f'
+    p_host='%F{cyan}[%f%(!.%F{red}%n%f.%F{green}%n%f)%F{cyan}@%f%F{yellow}%M%f%F{cyan}]%f'
   else
-    p_host='%F{green}%M%f'
+    p_host=''
   fi
 
   PS1=${(j::Q)${(Z:Cn:):-$'
+    ${p_host}
     %F{cyan}[%f
     %F{blue}%~%f
     %F{cyan}]%f
