@@ -4,7 +4,7 @@ URxvt*scrollBar: false
 URxvt*secondaryScroll: true
 URxvt*saveLines: 65535
 URxvt*xftAntialias: true
-URxvt.font: xft:NotoMono:size=11
+URxvt.font: xft:NotoMono:size=13
 URxvt.letterSpace: -1
 
 ! Molokai theme

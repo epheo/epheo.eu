@@ -1,16 +1,43 @@
 
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' menu select
-zstyle :compinstall filename '/home/epheo/.zshrc'
-
-autoload -Uz compinit
-compinit
-
+#------------------------------
+# History
+#------------------------------
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=10000
+HISTSIZE=10000
+SAVEHIST="${HISTSIZE}"
+# Ignore duplicate in history.
+setopt hist_ignore_dups
+# Prevent record in history entry if preceding them with at least one space
+setopt hist_ignore_space
+
 setopt appendhistory autocd extendedglob notify
-bindkey -e
+
+# Nobody need flow control anymore. Troublesome feature.
+#stty -ixon
+setopt noflowcontrol
+
+# Fix for tmux on linux.
+case "$(uname -o)" in
+    'GNU/Linux')
+        export EVENT_NOEPOLL=1
+    ;;
+esac
+
+# zargs, as an alternative to find -exec and xargs.
+autoload -U zargs
+
+# Turn on command substitution in the prompt (and parameter expansion and arithmetic expansion).
+setopt promptsubst
+
+# Not all servers have terminfo for rxvt-256color.
+if [ "${TERM}" = 'rxvt-256color' ] && ! [ -f '/usr/share/terminfo/r/rxvt-256color' ] && ! [ -f '/lib/terminfo/r/rxvt-256color' ] && ! [ -f "${HOME}/.terminfo/r/rxvt-256color" ]; then
+    export TERM='rxvt-unicode'
+fi
+
+
+if ! [[ "${PATH}" =~ "^${HOME}/bin" ]]; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
 
 source ~/.alias.sh
 
@@ -25,22 +52,6 @@ export EDITOR="vim"
 #-----------------------------
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
 export LS_COLORS
-
-#------------------------------
-# ShellFuncs
-#------------------------------
-# -- coloured manuals
-man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-    man "$@"
-}
 
 #------------------------------
 # Keybindings
@@ -64,6 +75,11 @@ bindkey '^[[C' forward-char
 # for rxvt
 bindkey "\e[8~" end-of-line
 bindkey "\e[7~" beginning-of-line
+
+# Control-v to open current line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 #------------------------------
 # Comp stuff
@@ -123,6 +139,30 @@ setprompt() {
   RPROMPT=$'${vcs_info_msg_0_}'
 }
 setprompt
+
+#------------------------------
+# Start with login on tty1
+#------------------------------
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  exec /usr/bin/jackd -dalsa -dhw:0 -r48000 -p1024 -n2 &
+  exec sway
+fi
+
+#------------------------------
+# ShellFuncs
+#------------------------------
+# -- coloured manuals
+man() {
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
+}
 
 
 # vim: set ts=2 sw=2 et:

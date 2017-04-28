@@ -7,22 +7,6 @@ alias ....='cd ../../..'
 alias ls="ls --color -F"
 alias ll="ls --color -lh"
 
-alias dock=" \
-            sudo dhclient enp0s25; \
-            setdns; \
-           "
-alias undock="xrandr --output eDP1 \
-                     --primary \
-                     --auto \
-                     --output DP1-2 \
-                     --off \
-             "
-
-alias lsn="ls -lah --color=never"   
-alias cdm="cd /mnt/data/lapierrt/Music &&\
-           lsn \
-          "
-
 alias vpnhp="sudo -E openconnect --juniper \
                                  -u W60017252 \
                                  https://uk.remoteaccess.hp.com \
@@ -64,5 +48,9 @@ alias setdns="sudo echo 'domain epheo.eu' \
                          > /dev/null \
              "
 
-alias brw="qutebrowser --backend=webengine &"
+alias brw="qutebrowser --backend=webengine"
 
+alias sonicpi="./aur/sonic-pi-git/sonic-pi/app/gui/qt/sonic-pi"
+
+alias viewpdf="epdfview"
+alias viewimg="viewnior"

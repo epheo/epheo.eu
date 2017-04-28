@@ -2,15 +2,11 @@ set nocompatible " be iMproved
 filetype off " required!
 
 set rtp+=~/.vim/bundle/vundle/
-"set rtp+=~/tools/powerline/powerline/bindings/vim
 call vundle#rc()
 let g:vundle_default_git_proto='git'
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'tomasr/molokai'
-Bundle 'tpope/vim-repeat'
-"Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'sjl/gundo.vim'
@@ -18,7 +14,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
 Bundle 'scrooloose/nerdtree'
-"Plugin 'chriskempson/base16-vim'
+Bundle 'dermusikman/sonicpi.vim'
 
 
 " ==========================================================
