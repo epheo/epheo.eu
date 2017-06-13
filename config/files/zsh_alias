@@ -49,7 +49,7 @@ alias setdns="sudo echo 'domain epheo.eu' \
                          > /dev/null \
              "
 
-alias brw="qutebrowser --backend=webengine"
+alias brw="qutebrowser --backend=webengine &"
 
 alias sonicpi="./aur/sonic-pi-git/sonic-pi/app/gui/qt/sonic-pi"
 
