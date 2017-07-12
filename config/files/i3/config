@@ -167,3 +167,4 @@ bar {
   status_command /usr/bin/i3blocks
 }
 
+exec xscreensaver
