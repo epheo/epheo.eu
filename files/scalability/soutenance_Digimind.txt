@@ -1,0 +1,82 @@
+
+0. Plan
+
+1. Presentation de l'entreprise:
+    Digimind une societe leader sur le marche de la veille strategique
+
+        Se presenter
+            - Utilisateur de Linux depuis plus de 10ans
+            - Passione par l
+            - STA Linux
+        Ce que propose l'entreprise
+        Histoire (la croissance, la croissance)
+        Ma place au sein de la societe
+        Les methodes Agiles
+            - StandUp meeting
+            - Repartition des taches: Backlog
+            - Gestion du temps: Ponderation des taches + BurnDown Chart
+            - Sprint planning
+        Chiffres (la croissance, la croissance)
+            - Nombre croissant d'utilisateur
+            - Toujours + d'info donc + grosse infra`
+            - Nouvelle application media sociaux
+            ----> **Toujours + de serveurs**
+2. Contexte:
+    Une transition vers la gestion progressive d'une infrastructure de grande echelle
+      
+        Les differentes infrastructures de la societe
+            - DI
+                prod
+                dev
+            - DS
+                prod
+                dev
+        Les infrastructures sur lesquelles porter mon travail.
+            - Les envrionements de devellopements
+            - Les environements de productions    
+        Leur specificitees
+            - DI dev: Tres complexe, 15ans, beaucoup de technologies differentes.
+                Besoin d'elasticite et d'agilite
+            - DI prod: Cloud d'analyse de donnees au fonctionement tres specifiques
+                Ce qui empeche d'utiliser les techno habituelement utilisees
+                Large volume de donnees a traiter. Pres de 500 machines.
+        Leur besoin de scalabilite
+            - 
+
+
+3. Problematique:
+    Comment repondre au besoin de scalabilite de l'infrastructure dans un entreprise en forte croissance
+
+        Pourquoi ce besoin de scalabilite??
+            Les entreprises evolues et grandissent avec leur nombre de clients CA etc
+        Les notions de scalabilite verticale et horizontale
+        Les notions de Cloud Public et de Cloud prive
+        Les notions de Saas Paas Iaas
+
+        Comment toutes ces solutions peuvent apporter d'avantage de scalabilite a l'infratsructure d'une entreprise.
+
+4. Travaux effectue:
+    
+    Environement de devellopement
+        Presentation d'OpenStack
+        Interet pour ce cas d'usage
+        Schema architecture
+        Aller plus loins ->
+            Schema HA + Separation des services
+
+    Cloud d'analyse de donnee en production
+        Presentation des AWS
+        Interet pour ce cas d'usage:
+            Remplacement immediat des machines simple
+            Tres forte elasticite et difference dans la charge
+                Nombre de machine variable
+                Parfois plusieurs centaines de machines a redemarrer instant
+            Pas de Hardware a gerer
+        Schema de l'architecture
+        Le devellopement d'une solution repondant a ces specificite
+
+    En quoi ces deux projets repondent a la problematique
+
+
+
+        Vers de solutions de scalabilite horizontales plus performantes
