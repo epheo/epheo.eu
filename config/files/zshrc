@@ -39,7 +39,7 @@ if ! [[ "${PATH}" =~ "^${HOME}/bin" ]]; then
     export PATH="${HOME}/bin:${PATH}"
 fi
 
-source ~/.alias.sh
+source ~/.zsh_alias
 
 #------------------------------
 # Variables
@@ -144,6 +144,12 @@ setprompt
 # Start with login on tty1
 #------------------------------
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  exec /usr/bin/jackd -dalsa -dhw:0 -r48000 -p1024 -n2 &
+  exec xscreensaver &
+  exec startx
+fi
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty2 ]]; then
   exec /usr/bin/jackd -dalsa -dhw:0 -r48000 -p1024 -n2 &
   exec sway
 fi
