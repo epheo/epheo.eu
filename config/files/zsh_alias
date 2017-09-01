@@ -55,3 +55,6 @@ alias sonicpi="./aur/sonic-pi-git/sonic-pi/app/gui/qt/sonic-pi"
 
 alias viewpdf="epdfview"
 alias viewimg="viewnior"
+
+alias ta="transmission-remote -a"
+alias tl="transmission-remote -l"
