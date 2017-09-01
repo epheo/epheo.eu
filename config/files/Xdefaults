@@ -7,43 +7,17 @@ URxvt*xftAntialias: true
 URxvt.font: xft:NotoMono:size=13
 URxvt.letterSpace: -1
 
-! Molokai theme
-#URxvt*background:                     #272822
-#URxvt*foreground:                     #f8f8f2
-#URxvt*cursorColor:                    #f8f8f2
-#
-#URxvt*scrollColor:                    #f8f8f2
-#URxvt*highlightColor:                 #49483e
-#URxvt*highlightTextColor:             #a59f85
-#
-#URxvt*color0:                         #272822
-#URxvt*color1:                         #f92672
-#URxvt*color2:                         #a6e22e
-#URxvt*color3:                         #f4bf75
-#URxvt*color4:                         #66d9ef
-#URxvt*color5:                         #ae81ff
-#URxvt*color6:                         #a1efe4
-#URxvt*color7:                         #f8f8f2
-#URxvt*color8:                         #75715e
-#URxvt*color9:                         #f92672
-#URxvt*color10:                        #a6e22e
-#URxvt*color11:                        #f4bf75
-#URxvt*color12:                        #66d9ef
-#URxvt*color13:                        #ae81ff
-#URxvt*color14:                        #a1efe4
-#URxvt*color15:                        #f9f8f5
-#
-#URxvt*color16:                        #fd971f
-#URxvt*color17:                        #cc6633
-#URxvt*color18:                        #383830
-#URxvt*color19:                        #49483e
-#URxvt*color20:                        #a59f85
-#URxvt*color21:                        #f5f4f1
+! do not scroll with output
+URxvt*scrollTtyOutput: false
 
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
 
-! Zenburn 
-!
-#*background: #3f3f3f
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt*background: #1D2021
+
 *foreground: #dcdccc
 *cursorColor: #aaaaaa
 *colorUL: #366060
@@ -64,38 +38,3 @@ URxvt.letterSpace: -1
 *color13: #dc8cc3
 *color14: #93e0e3
 *color15: #ffffff
-
-!Darktooth
-URxvt*background:                     #1D2021
-#URxvt*foreground:                     #A89984
-#URxvt*cursorColor:                    #A89984
-#
-#URxvt*scrollColor:                    #A89984
-#URxvt*highlightColor:                 #504945
-#URxvt*highlightTextColor:             #928374
-#
-#URxvt*color0:                         #1D2021
-#URxvt*color1:                         #FB543F
-#URxvt*color2:                         #95C085
-#URxvt*color3:                         #FAC03B
-#URxvt*color4:                         #0D6678
-#URxvt*color5:                         #8F4673
-#URxvt*color6:                         #8BA59B
-#URxvt*color7:                         #A89984
-#URxvt*color8:                         #665C54
-#URxvt*color9:                         #FB543F
-#URxvt*color10:                        #95C085
-#URxvt*color11:                        #FAC03B
-#URxvt*color12:                        #0D6678
-#URxvt*color13:                        #8F4673
-#URxvt*color14:                        #8BA59B
-#URxvt*color15:                        #FDF4C1
-#
-#URxvt*color16:                        #FE8625
-#URxvt*color17:                        #A87322
-#URxvt*color18:                        #32302F
-#URxvt*color19:                        #504945
-#URxvt*color20:                        #928374
-#URxvt*color21:                        #D5C4A1
-#
-#

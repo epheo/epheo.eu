@@ -1,1 +1,5 @@
 :set gui=nonavigation
+
+
+map po : set! network.proxy.type=1 <CR>: echo "SOCKS PROXY"
+map pl : set! network.proxy.type=0 <CR>: echo "DIRECT"
