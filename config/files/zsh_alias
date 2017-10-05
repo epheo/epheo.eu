@@ -1,5 +1,5 @@
-alias lk='swaylock --color 000000'
-alias xlk='xscreensaver-command -lock'
+
+alias k='xscreensaver-command -lock'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -8,35 +8,13 @@ alias ....='cd ../../..'
 alias ls="ls --color -F"
 alias ll="ls --color -lh"
 
-alias vpnhp="sudo -E openconnect --juniper \
-                                 -u W60017252 \
-                                 https://uk.remoteaccess.hp.com \
-                                 --authgroup OATH; \
-            "
-alias vpnhg="sudo -E openconnect --juniper \
-                                 -u W60017252 \
-                                 https://global.remoteaccess.hp.com \
-                                 --authgroup OATH; \
-            "
-alias vpnlab="sudo openvpn /etc/openvpn/lab.ovpn"
-
 alias lumd="xbacklight -dec 10"
 alias lumi="xbacklight -inc 10"
-
 alias lum=" read &&           \
             sudo echo $REPLY  \
               | sudo tee      \
               --append  /sys/class/backlight/intel_backlight/brightness
           "
-
-
-alias sd='cd ~/git/shaddock-openstack; \
-          cd ~/git/shaddock/; \
-         '
-
-alias killwl='sudo ip l s wlo1 down; \
-               sudo killall dhcpcd \
-             '
 
 alias setdns="sudo echo 'domain epheo.eu' \
                          | sudo tee /etc/resolv.conf \

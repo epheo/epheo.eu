@@ -1,5 +1,5 @@
-set nocompatible " be iMproved
-filetype off " required!
+set nocompatible
+filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -14,20 +14,15 @@ Bundle 'sjl/gundo.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
 Bundle 'scrooloose/nerdtree'
-Bundle 'dermusikman/sonicpi.vim'
 
 
-" ==========================================================
 " Shortcuts
-" ==========================================================
+" 
 let mapleader="," " change the leader to be a comma vs slash
 
 " sudo write this
 cmap W! w !sudo tee % >/dev/null
 cmap w!! w !sudo tee % >/dev/null
-
-" Reload Vimrc
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " open/close the quickfix window
 nmap <leader>c :copen<CR>
@@ -39,26 +34,22 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" and lets make these all work in insert mode too ( <C-O> makes next cmd
-"  happen as if in command mode )
+" also in insert mode with <C-O> for command
 imap <C-W> <C-O><C-W>
 
-" Load the Gundo window
+" Load Gundo
 map <leader>g :GundoToggle<CR>
 
-" ==========================================================
-" Basic Settings
-" ==========================================================
-syntax on " syntax highlighing
-filetype on " try to detect filetypes
-filetype plugin indent on " enable loading indent file for filetype
-set number " Display line numbers
-set background=dark " We are using dark background in vim
-set title " show title in console title bar
-set wildmenu " Menu completion in command mode on <Tab>
-set wildmode=full " <Tab> cycles between all matching choices.
+syntax on
+filetype on
+filetype plugin indent on
+set number
+set background=dark
+set title
 
-" Ignore these files when completing
+" autocompletion
+set wildmenu 
+set wildmode=full
 set wildignore+=*.o,*.obj,.git,*.pyc
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
@@ -78,8 +69,8 @@ set virtualedit=block " Let cursor move past the last char in <C-v> mode
 set scrolloff=3 " Keep 3 context lines above and below the cursor
 set backspace=2 " Allow backspacing over autoindent, EOL, and BOL
 set showmatch " Briefly jump to a paren once it's balanced
-set wrap " Wrap text
-set linebreak " don't wrap textin the middle of a word
+" set wrap " Wrap text
+" set linebreak " don't wrap textin the middle of a word
 set autoindent " always set autoindenting on
 set smartindent " use smart indent if there is no indent file
 set tabstop=4 " <tab> inserts 4 spaces
@@ -147,7 +138,7 @@ if exists("+undofile")
 endif
 hi DiffText gui=underline guibg=red guifg=black
 
-" Preview Markdown files with QuickLook
+" Markdown files with QuickLook
 map <Leader>v :write<cr>:sil !/usr/bin/qlmanage -p % > /dev/null &<cr>:redraw!<cr>
 set guifont=Sauce\ Code\ Powerline:h14)
 
@@ -157,32 +148,22 @@ set t_Co=256
 
 autocmd BufWritePre *.py :%s/\s\+$//e
 
-"======================="
-"      NerdTree         "
-"======================="
-
-" Open if nothing
+" nerdtree
+" 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Mouse
 set mouse=a
-
 map <C-n> :NERDTreeToggle<CR>
-
 " Close if nothing
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 let NERDTreeDirArrows=0
 
 
-" Syntastic :
+" syntastic
 "
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1

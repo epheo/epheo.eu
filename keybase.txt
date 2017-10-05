@@ -1,0 +1,69 @@
+==================================================================
+https://keybase.io/epheo
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://epheo.eu
+  * I am epheo (https://keybase.io/epheo) on keybase.
+  * I have a public key with fingerprint 01DE 11F3 1F8A 6091 6988  72AB B66C 44B5 8A55 9D5F
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101f72198132e15019370eb3d5bca4b4d8df4100f3050d22fd9fbe717deffbf7b850a",
+      "fingerprint": "01de11f31f8a6091698872abb66c44b58a559d5f",
+      "host": "keybase.io",
+      "key_id": "b66c44b58a559d5f",
+      "kid": "0101f72198132e15019370eb3d5bca4b4d8df4100f3050d22fd9fbe717deffbf7b850a",
+      "uid": "f18ee86611f22f691e42fbd1f1e0ad00",
+      "username": "epheo"
+    },
+    "service": {
+      "hostname": "epheo.eu",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1507208638,
+  "expire_in": 157680000,
+  "prev": "45537b0c92119d844a102b0680add5982c14a872e38c090f95d2351261378ac8",
+  "seqno": 4,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.74
+Comment: https://keybase.io/crypto
+
+yMIkAnicrZJfbAxBHMevaMWhSpCUamODKtea2d3Znb32QSqREE3Tpk2oxmV3Z6a3
+yu252+tpuL748yARURV9wPFQHriSVoI0RFVCKfW3JYoHjcTLSQlSiT+zDYkHj+Zl
+Mr/5fL/z/c3MrZmTPd6M8/ndg6/O9KKMe72HYp5NQ8XXdwmGTZoF/y6hkU5MdBuh
+USfQaBHBLwAIIFNFqGEoiRQiADVJBdSQCDJMXTZkggmTIQBMAggQUWREYwZVoUoo
+YwZTDYyALvgEZoUaaCQcsULOhC2hEDIJMqwrQIOKhrEq6oahKKYsGwjrCGkEMS4M
+2lFXwcMZepSWWDav8UVgIt4/+P+cOzZhxyCmFCsKz8xRRYNUFplBIIMU6AQAF4zS
+SEjfTjlNw0FqCwmfwEtNlkndW3Xb+Hu7hMa4KByxHdu0t/Fq0HHCflfkNIddKk6N
+wG99wLBChN8fFzTRSNSyQ4IfctJ0LNeQd6eKACsS9gl0Z9iK0IDlEkhVMODDPYY2
+cUsZIUk1gKmJEGoEy7IOgWgATumEIA2LJpR1/g5UwibQANMQESUERQVKKtZNLLgd
+7QjZgl/mMfUGbhm1GkK6E4tQIXHzRv0UT4bXk5U5yf1XHu+0nD+/Db6Y+qO4sv7+
+0dSS1Nn0omDnsvqO4XYxverinMHyw29atXdlPzprGmvK48fvpgpS+aUHzZ7tc3vu
+LPRmF259cuGdGpzXIsSHgy/D3XVvdz+tO3HFXtRdi572Zj9+Pz1RodQsR7uL4n09
+ebVVYuXkrg1d5ZfaTp98cHVr6ayS0x+fve7fvyLvSUf30lCb73z2Smdf1Wrl2/Nj
+R04kR3M7WnIqP6UbvvePXn5UN987SxvoH/swYif3DdxyRlqSG061Tx0pO/Vwj695
+fPzBjNrRwqEvHZsfrR3czFrPJeasW7M4c2BhQdaWRNnXBbl9r5auu72+emPy4YGi
+q5ljzbP3/jTvXKtOb/lc8aX4Fxv8P+Q=
+=GkHI
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/epheo
+
+==================================================================
+

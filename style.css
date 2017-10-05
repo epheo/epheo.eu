@@ -1,6 +1,6 @@
-body{background: #232937;}
-h1, h2{display: inline-block; *display: inline; color: #232937; font-size:1em; background: #FFF; padding: 2px;}
-header {color: #232937; font-family: 'Lucida Sans', Lucida Grande, Verdana, Arial, Sans-Serif; padding: 0 20px; }
-	header p{background: #FFF; display: inline-block; *display: inline; padding: 2px;}
-	header a, header a:hover, header a:visited{color: #232937; text-decoration: none;}
-	header a:hover {text-decoration: underline;}
+body{background: #232937; color: #FFF;}
+h1, h2{margin: 20px 0px 0px 0px;}
+header p{margin: 0px 0px 0px 2px;}
+article p{margin: 0px 0px 0px 10px;}
+a, a:hover, a:visited{color: #FFF; text-decoration: none;}
+a:hover {text-decoration: underline;}
