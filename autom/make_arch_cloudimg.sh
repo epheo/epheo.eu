@@ -1,9 +1,6 @@
 #!/bin/bash
-
 # This script aims to create an Arch Linux OpenStack ready Qcow2 image for KVM.
 
-# This script require the following dependencies:
-#
 # yaourt -Sy --noconfirm --needed git qemu parted mbr \
 #                                 multipath-tools arch-install-scripts
 
@@ -33,6 +30,7 @@ LOOP=`sudo kpartx -av ${AMI_NAME} |grep loop |sed -e "s/.*\(loop[^ ]*\).*/\1/"`
 
 sudo mkfs.ext4 /dev/mapper/${LOOP}
 
+BLOCK_ID=`sudo blkid /dev/mapper/${LOOP} |cut -d ' ' -f2`
 MOUNT_DIR=`mktemp -d -t build-img.XXXXXX`
 sudo mount -o loop /dev/mapper/${LOOP} ${MOUNT_DIR}
 sudo pacstrap -c ${MOUNT_DIR} base
@@ -48,11 +46,11 @@ sudo arch-chroot ${MOUNT_DIR} sh -c "echo root:password | chpasswd"
 # Setup fstab
 echo "# /etc/fstab: static file system information.
 proc	/proc	proc	nodev,noexec,nosuid	0	0
-/dev/vda1	/	ext4	errors=remount-ro	0	1
+UUID=${BLOCK_ID}	/	ext4	errors=remount-ro	0	1
 " | sudo tee -a ${MOUNT_DIR}/etc/fstab
 
 # Set a basic hostname
-echo "cloudarch" |sudo tee ${MOUNT_DIR}/etc/hostname
+echo "cloud-arch" |sudo tee ${MOUNT_DIR}/etc/hostname
 
 # Timezone
 sudo arch-chroot ${MOUNT_DIR} rm /etc/localtime
@@ -83,10 +81,10 @@ echo "default linux
 timeout 1
 label linux
 kernel ${KERNEL}
-append initrd=${RAMDISK} root=/dev/vda1 ro quiet" \
+append initrd=${RAMDISK} root=UUID=${BLOCK_ID} ro quiet" \
   |sudo tee ${MOUNT_DIR}/boot/syslinux/syslinux.cfg
-#sudo extlinux --install ${MOUNT_DIR}/boot/syslinux
 sudo arch-chroot ${MOUNT_DIR} extlinux -i /boot/syslinux
+sudo arch-chroot ${MOUNT_DIR} dd bs=440 count=1 conv=notrunc if=/usr/lib/syslinux/bios/mbr.bin of=/dev/mapper/${LOOP}
 
 # Unmount and cleanup everything
 # ==============================
