@@ -1,11 +1,11 @@
 #!/bin/bash
 # This script aims to create an Arch Linux OpenStack ready Qcow2 image for KVM.
 
-# yaourt -Sy --noconfirm --needed git qemu parted mbr \
+# yaourt -Sy --noconfirm --needed git qemu parted \
 #                                 multipath-tools arch-install-scripts
 
 set -e
-set -x
+#set -x
 
 running_as_root() {
   test "$(/usr/bin/id -u)" -eq 0
@@ -19,6 +19,11 @@ FILE_NAME=arch-$DATE-x86_64
 AMI_NAME=${FILE_NAME}.raw
 QCOW2_NAME=${FILE_NAME}.qcow2
 R_PASSW='password'
+
+MOUNT_DIR=`mktemp -d -t build-img.XXXXXX`
+CHROOT="sudo arch-chroot ${MOUNT_DIR}"
+PARTED=/usr/bin/parted
+
 rm -f ${AMI_NAME}
 
 clean () {
@@ -27,7 +32,8 @@ clean () {
 # -------------------
 __EOF__
 
-  sudo chroot ${MOUNT_DIR} umount /proc || true
+  # ${CHROOT} rm /etc/machine-id /var/lib/dbus/machine-id || true
+  ${CHROOT} umount /proc || true
   sudo umount ${MOUNT_DIR}
   # Run FSCK so that resize can work
   sudo tune2fs -j /dev/mapper/${LOOP} || true
@@ -38,10 +44,9 @@ __EOF__
 
 
 cat <<__EOF__
-Create initial volume and install base system
----------------------------------------------
+# Create initial volume and install base system
+# ---------------------------------------------
 __EOF__
-PARTED=/usr/bin/parted
 /usr/bin/qemu-img create ${AMI_NAME} 1G || clean
 
 ${PARTED} -s ${AMI_NAME} mktable msdos
@@ -54,11 +59,8 @@ sudo mkfs.ext4 -O ^64bit /dev/mapper/${LOOP} || clean
 # -O ^64bit option as syslinux does not support it
 
 BLOCK_ID=`sudo blkid /dev/mapper/${LOOP} |cut -d ' ' -f2 |tr -d \"`
-MOUNT_DIR=`mktemp -d -t build-img.XXXXXX`
 sudo mount -o loop /dev/mapper/${LOOP} ${MOUNT_DIR} || clean
 sudo pacstrap -c ${MOUNT_DIR} base || clean
-
-CHROOT="sudo arch-chroot ${MOUNT_DIR}"
 
 
 cat <<__EOF__
@@ -66,7 +68,8 @@ cat <<__EOF__
 # ----------------------------
 __EOF__
 
-${CHROOT} pacman --noconfirm -S openssh cronie syslinux
+${CHROOT} pacman --noconfirm -S openssh cronie syslinux || clean
+${CHROOT} pacman --noconfirm -S cloud-init || clean
 
 sudo arch-chroot ${MOUNT_DIR} sh -c "echo root:${R_PASSW} | chpasswd"
 sudo sed -i "s/PermitRootLogin yes/PermitRootLogin without-password/" \
@@ -90,28 +93,19 @@ echo '# Enable sshd, dhcpcd, cronie'
 ${CHROOT} systemctl enable dhcpcd@eth0.service
 ${CHROOT} systemctl enable cronie.service
 ${CHROOT} systemctl enable sshd.service
+# ${CHROOT} systemctl enable cloud-init.service
 sudo mkdir -p ${MOUNT_DIR}/root/.ssh
 
 echo '# Setting-up initramfs'
 # Growfs used to autoresize image root disk to flavor root disk
-# mkinitcpio 
-
-#sudo sed -i -r -e '/^HOOKS=/ { s/fsck/fsck growfs/ }' \
-#  ${MOUNT_DIR}/etc/mkinitcpio.conf
-#sudo sed -i -r -e \
-#  '/^MODULES=/ { s/\"\"/\"virtio\ virtio_blk\ virtio_pci\ virtio_net\"/ }' \
-#  ${MOUNT_DIR}/etc/mkinitcpio.conf
 
 sudo sed -i \
-  '/^HOOKS=/c\HOOKS=\"base\ udev\ block\ autodetect\ modconf\ filesystems\ keyboard\ fsck\"' \
+  '/^HOOKS=/c\HOOKS=\"base\ udev\ block\ modconf\ filesystems\ keyboard\ fsck\"' \
   ${MOUNT_DIR}/etc/mkinitcpio.conf
 
 sudo sed -i \
   '/^MODULES=/c\MODULES=\"virtio\ virtio_blk\ virtio_pci\ virtio_net\"' \
   ${MOUNT_DIR}/etc/mkinitcpio.conf
-
-cat ${MOUNT_DIR}/etc/mkinitcpio.conf |grep HOOKS
-cat ${MOUNT_DIR}/etc/mkinitcpio.conf |grep MODULES
 
 ${CHROOT} mkinitcpio -p linux
 
@@ -129,7 +123,7 @@ TIMEOUT 50
 DEFAULT arch
 LABEL arch
     LINUX /${KERNEL}
-    APPEND root=${BLOCK_ID} rw
+    APPEND root=${BLOCK_ID} rw net.ifnames=0
     INITRD /${RAMDISK}" \
   |sudo tee ${MOUNT_DIR}/boot/syslinux/syslinux.cfg
 ${CHROOT} extlinux --install /boot/syslinux/
@@ -139,6 +133,7 @@ sudo dd bs=440 count=1 conv=notrunc \
 
 clean
 
+
 cat <<__EOF__
 # Converting image to qcow2
 # -------------------------
@@ -147,9 +142,5 @@ __EOF__
 sudo qemu-img convert -c -f raw ${AMI_NAME} -O qcow2 ${QCOW2_NAME}
 sudo rm ${AMI_NAME}
 
-cat <<__EOF__
-# ---------------------------------------
-# ---------------------------------------
-# The created Arch guest system image is:
-__EOF__
+echo "# The created Arch guest system image is:"
 echo `pwd`/$QCOW2_NAME
