@@ -58,10 +58,8 @@ export LS_COLORS
 #------------------------------
 bindkey -v
 typeset -g -A key
-#bindkey '\e[3~' delete-char
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
-#bindkey '\e[2~' overwrite-mode
 bindkey '^?' backward-delete-char
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[5~' up-line-or-history
@@ -82,7 +80,7 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 #------------------------------
-# Comp stuff
+# Completion stuff
 #------------------------------
 zmodload zsh/complist 
 autoload -Uz compinit
@@ -144,7 +142,6 @@ setprompt
 # Start with login on tty1
 #------------------------------
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  # exec /usr/bin/jackd -dalsa -dhw:0 -r48000 -p1024 -n2 &
   exec xscreensaver &
   exec startx
 fi

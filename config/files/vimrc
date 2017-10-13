@@ -1,6 +1,3 @@
-set nocompatible
-filetype off
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 let g:vundle_default_git_proto='git'
@@ -10,35 +7,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'sjl/gundo.vim'
-"Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
 Bundle 'scrooloose/nerdtree'
 
-
-" Shortcuts
-" 
-let mapleader="," " change the leader to be a comma vs slash
-
 " sudo write this
 cmap W! w !sudo tee % >/dev/null
 cmap w!! w !sudo tee % >/dev/null
-
-" open/close the quickfix window
-nmap <leader>c :copen<CR>
-nmap <leader>cc :cclose<CR>
-
-" ctrl-jklm changes to that split
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-" also in insert mode with <C-O> for command
-imap <C-W> <C-O><C-W>
-
-" Load Gundo
-map <leader>g :GundoToggle<CR>
 
 syntax on
 filetype on
@@ -54,13 +29,6 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
 
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-" Disable the colorcolumn when switching modes. Make sure this is the
-" first autocmd for the filetype here
-"autocmd FileType * setlocal colorcolumn=0
-
 """ Moving Around/Editing
 " set cursorline " have a line indicate the cursor location
 set ruler " show the cursor position all the time
@@ -69,8 +37,8 @@ set virtualedit=block " Let cursor move past the last char in <C-v> mode
 set scrolloff=3 " Keep 3 context lines above and below the cursor
 set backspace=2 " Allow backspacing over autoindent, EOL, and BOL
 set showmatch " Briefly jump to a paren once it's balanced
-" set wrap " Wrap text
-" set linebreak " don't wrap textin the middle of a word
+set wrap " Wrap text
+set linebreak " don't wrap textin the middle of a word
 set autoindent " always set autoindenting on
 set smartindent " use smart indent if there is no indent file
 set tabstop=4 " <tab> inserts 4 spaces
@@ -94,7 +62,6 @@ set ls=2 " allways show status line
 set showcmd " Show incomplete normal mode commands as I type.
 set report=0 " : commands always print changed line count.
 set shortmess+=a " Use [+]/[RO]/[w] for modified/readonly/written.
-set ruler " Show some info, even without statuslines.
 set laststatus=2 " Always show statusline, even if only 1 window.
 
 """ Searching and Patterns
