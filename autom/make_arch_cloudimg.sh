@@ -15,14 +15,13 @@ K_MOD=`lsmod |grep loop`
 if [ -z "$K_MOD" ]; then sudo modprobe loop; fi;
 
 DATE=`date -Iseconds |sed -r 's/[^a-za-z0-9]//g; s/0000/0/g'`
-FILE_NAME=arch-$DATE-x86_64
+FILE_NAME=arch-cloudimg-$DATE-x86_64
 AMI_NAME=${FILE_NAME}.raw
 QCOW2_NAME=${FILE_NAME}.qcow2
 R_PASSW='password'
 
 MOUNT_DIR=`mktemp -d -t build-img.XXXXXX`
 CHROOT="sudo arch-chroot ${MOUNT_DIR}"
-PARTED=/usr/bin/parted
 
 rm -f ${AMI_NAME}
 
@@ -31,7 +30,6 @@ clean () {
 # Unmount and cleanup
 # -------------------
 __EOF__
-
   # ${CHROOT} rm /etc/machine-id /var/lib/dbus/machine-id || true
   ${CHROOT} umount /proc || true
   sudo umount ${MOUNT_DIR}
@@ -47,11 +45,12 @@ cat <<__EOF__
 # Create initial volume and install base system
 # ---------------------------------------------
 __EOF__
-/usr/bin/qemu-img create ${AMI_NAME} 1G || clean
+/usr/bin/qemu-img create ${AMI_NAME} 2G || clean
 
-${PARTED} -s ${AMI_NAME} mktable msdos
-${PARTED} -s -a optimal ${AMI_NAME} mkpart primary ext4 1M 100%
-${PARTED} -s ${AMI_NAME} set 1 boot on
+parted=/usr/bin/parted
+${parted} -s ${AMI_NAME} mktable msdos
+${parted} -s -a optimal ${AMI_NAME} mkpart primary ext4 1M 100%
+${parted} -s ${AMI_NAME} set 1 boot on
 
 LOOP=`sudo kpartx -av ${AMI_NAME} |grep loop |sed -e "s/.*\(loop[^ ]*\).*/\1/"`
 
@@ -68,8 +67,7 @@ cat <<__EOF__
 # ----------------------------
 __EOF__
 
-${CHROOT} pacman --noconfirm -S openssh cronie syslinux || clean
-${CHROOT} pacman --noconfirm -S cloud-init || clean
+${CHROOT} pacman --noconfirm -S openssh cronie syslinux cloud-init || clean
 
 sudo arch-chroot ${MOUNT_DIR} sh -c "echo root:${R_PASSW} | chpasswd"
 sudo sed -i "s/PermitRootLogin yes/PermitRootLogin without-password/" \
@@ -93,7 +91,10 @@ echo '# Enable sshd, dhcpcd, cronie'
 ${CHROOT} systemctl enable dhcpcd@eth0.service
 ${CHROOT} systemctl enable cronie.service
 ${CHROOT} systemctl enable sshd.service
-# ${CHROOT} systemctl enable cloud-init.service
+${CHROOT} systemctl enable cloud-init-local.service
+${CHROOT} systemctl enable cloud-init.service
+#${CHROOT} systemctl enable cloud-init-config.service
+#${CHROOT} systemctl enable cloud-init-final.service
 sudo mkdir -p ${MOUNT_DIR}/root/.ssh
 
 echo '# Setting-up initramfs'
@@ -102,7 +103,6 @@ echo '# Setting-up initramfs'
 sudo sed -i \
   '/^HOOKS=/c\HOOKS=\"base\ udev\ block\ modconf\ filesystems\ keyboard\ fsck\"' \
   ${MOUNT_DIR}/etc/mkinitcpio.conf
-
 sudo sed -i \
   '/^MODULES=/c\MODULES=\"virtio\ virtio_blk\ virtio_pci\ virtio_net\"' \
   ${MOUNT_DIR}/etc/mkinitcpio.conf
@@ -116,15 +116,15 @@ __EOF__
 
 ${CHROOT} mkdir -p /boot/syslinux
 ${CHROOT} cp /usr/lib/syslinux/bios/*.c32 /boot/syslinux/
-KERNEL=`${CHROOT} find boot -name 'vmlinuz-linux'`
-RAMDISK=`${CHROOT} find boot -name 'initramfs-linux.img'`
+kernel=`${CHROOT} find boot -name 'vmlinuz-linux'`
+ramdisk=`${CHROOT} find boot -name 'initramfs-linux.img'`
 echo "PROMPT 1
 TIMEOUT 50
 DEFAULT arch
 LABEL arch
-    LINUX /${KERNEL}
+    LINUX /${kernel}
     APPEND root=${BLOCK_ID} rw net.ifnames=0
-    INITRD /${RAMDISK}" \
+    INITRD /${ramdisk}" \
   |sudo tee ${MOUNT_DIR}/boot/syslinux/syslinux.cfg
 ${CHROOT} extlinux --install /boot/syslinux/
 sudo dd bs=440 count=1 conv=notrunc \
@@ -132,7 +132,6 @@ sudo dd bs=440 count=1 conv=notrunc \
         of=${AMI_NAME}
 
 clean
-
 
 cat <<__EOF__
 # Converting image to qcow2
