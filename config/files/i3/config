@@ -4,7 +4,7 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:monospace 11
+font pango:NotoMono 11
 hide_edge_borders both
 new_window pixel 0
 
@@ -12,13 +12,16 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+d exec dmenu-frecency
+bindsym $mod+p exec passmenu
 bindsym $mod+b exec qutebrowser
+
+bindsym $mod+l exec xscreensaver-command -lock
 
 bindsym $mod+j         focus left
 bindsym $mod+Left      focus left
 bindsym $mod+k         focus down
 bindsym $mod+Down      focus down
-bindsym $mod+l         focus up
+# bindsym $mod+l         focus up
 bindsym $mod+Up        focus up
 bindsym $mod+semicolon focus right
 bindsym $mod+Right     focus right
@@ -99,3 +102,6 @@ bar {
 }
 
 exec xscreensaver
+# exec --no-startup-id i3-msg 'workspace 8; exec run_keybase'
+# exec --no-startup-id i3-msg 'workspace 1'
+# exec remmina -i
