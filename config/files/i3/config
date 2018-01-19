@@ -12,7 +12,8 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+d exec dmenu-frecency
-bindsym $mod+p exec passmenu
+bindsym $mod+x exec passmenu
+bindsym $mod+p exec /home/epheo/bin/toggle_ext_screen
 bindsym $mod+b exec qutebrowser
 
 bindsym $mod+l exec xscreensaver-command -lock
