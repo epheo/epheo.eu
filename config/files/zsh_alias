@@ -31,6 +31,8 @@ alias brw="qutebrowser --backend=webengine &"
 
 alias sonicpi="./aur/sonic-pi-git/sonic-pi/app/gui/qt/sonic-pi"
 
+alias haze="/usr/bin/nextcloudcmd"
+
 alias viewpdf="epdfview"
 alias viewimg="viewnior"
 
