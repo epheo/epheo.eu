@@ -4,7 +4,7 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:monospace 11
+font pango:NotoMono 11
 hide_edge_borders both
 new_window pixel 0
 
@@ -12,13 +12,17 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+d exec dmenu-frecency
+bindsym $mod+x exec passmenu
+bindsym $mod+p exec /home/epheo/bin/toggle_ext_screen
 bindsym $mod+b exec qutebrowser
+
+bindsym $mod+l exec xscreensaver-command -lock
 
 bindsym $mod+j         focus left
 bindsym $mod+Left      focus left
 bindsym $mod+k         focus down
 bindsym $mod+Down      focus down
-bindsym $mod+l         focus up
+# bindsym $mod+l         focus up
 bindsym $mod+Up        focus up
 bindsym $mod+semicolon focus right
 bindsym $mod+Right     focus right
@@ -71,6 +75,27 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
+set $displayMode "Set display mode [w]ork [l]aptop"
+bindsym $mod+c mode $displayMode
+mode $displayMode {
+    bindsym a exec "\
+                xrandr --output eDP1 --primary  --output HDMI2 --auto --above eDP1"; \
+                mode "default"
+    bindsym r exec "\
+                xrandr --output eDP1 --primary  --output HDMI2 --auto --right-of eDP1"; \
+                mode "default"
+    bindsym r exec "\
+                xrandr --output eDP1 --primary  --output HDMI2 --auto --left-of eDP1"; \
+                mode "default"
+    bindsym l exec "\
+                xrandr --output eDP1 --primary  --output HDMI2 --off"; \
+                mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
 mode "resize" {
         bindsym j resize shrink width 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
@@ -99,3 +124,6 @@ bar {
 }
 
 exec xscreensaver
+# exec --no-startup-id i3-msg 'workspace 8; exec run_keybase'
+# exec --no-startup-id i3-msg 'workspace 1'
+# exec remmina -i

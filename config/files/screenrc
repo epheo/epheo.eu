@@ -1,0 +1,10 @@
+startup_message off
+autodetach      on
+vbell off
+
+defscrollback 20000
+
+termcapinfo xterm* ti@:te@
+
+caption always " "
+hardstatus alwayslastline "%{= kw}[ %{G}%H %{w}][ %=%{w}%?%-Lw%?%{g}(%{W}%n*%f %t%?(%u)%?%{g})%{w}%?%+Lw%?%?%= %{w}][%{W} %d/%m %{W}%c %{w}]"
