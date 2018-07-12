@@ -36,3 +36,8 @@ alias viewimg="viewnior"
 
 alias ta="transmission-remote -a"
 alias tl="transmission-remote -l"
+
+alias haze="sudo -u http php -f /usr/share/webapps/nextcloud/occ"
+alias haze-sync="sudo chown -R http.http /mnt/data/nextcloud/data ;\
+                 haze files:scan epheo ;\
+                 "
