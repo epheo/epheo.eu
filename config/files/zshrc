@@ -39,13 +39,15 @@ if ! [[ "${PATH}" =~ "^${HOME}/bin" ]]; then
     export PATH="${HOME}/bin:${PATH}"
 fi
 
+PATH=$PATH:/home/epheo/.local/bin
+
 source ~/.zsh_alias
 
 #------------------------------
 # Variables
 #------------------------------
-export BROWSER="qutebrowser"
-export EDITOR="vim"
+export BROWSER=/usr/bin/qutebrowser
+export EDITOR=/usr/bin/vim
 
 #-----------------------------
 # Dircolors
@@ -177,5 +179,6 @@ notes() {
     cat - >> "$HOME/notes.md"
   fi
 }
+
 
 # vim: set ts=2 sw=2 et:

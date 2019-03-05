@@ -1,0 +1,18 @@
+[Removed Associations]
+
+[Added Associations]
+text/plain=userapp-vim -f-6OFDTZ.desktop;
+image/jpeg=viewnior.desktop;
+image/png=viewnior.desktop;
+
+[Default Applications]
+text/plain=userapp-vim -f-6OFDTZ.desktop
+image/jpeg=viewnior.desktop
+image/png=viewnior.desktop
+inode/directory=pcmanfm.desktop
+application/pdf=xpdf.desktop
+text/html=qutebrowser.desktop
+x-scheme-handler/http=qutebrowser.desktop
+x-scheme-handler/https=qutebrowser.desktop
+x-scheme-handler/about=qutebrowser.desktop
+x-scheme-handler/unknown=qutebrowser.desktop

@@ -7,8 +7,8 @@ URxvt*scrollBar: false
 URxvt*secondaryScroll: true
 URxvt*saveLines: 65535
 URxvt*xftAntialias: true
-URxvt.font: xft:NotoMono:size=14
-URxvt.letterSpace: -1
+URxvt.font: xft:NotoMono:size=10
+URxvt.letterSpace: -4
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true

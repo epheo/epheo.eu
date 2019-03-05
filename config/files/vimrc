@@ -20,7 +20,7 @@ filetype on
 filetype plugin indent on
 
 set number
-set background=dark
+" set background=dark
 set title
 
 " autocompletion
@@ -105,16 +105,6 @@ if exists("+undofile")
   set undofile
 endif
 hi DiffText gui=underline guibg=red guifg=black
-
-" Markdown files with QuickLook
-map <Leader>v :write<cr>:sil !/usr/bin/qlmanage -p % > /dev/null &<cr>:redraw!<cr>
-set guifont=Sauce\ Code\ Powerline:h14)
-
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-set laststatus=2
-set t_Co=256
-
-autocmd BufWritePre *.py :%s/\s\+$//e
 
 " nerdtree
 " 
