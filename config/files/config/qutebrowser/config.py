@@ -2,7 +2,7 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
-c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'x': 'quit --save', "socks-on":"set content.proxy socks://localhost:9090/", "socks-off":"unset content.proxy"}
+c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'x': 'quit --save', "socks-on":"set content.proxy socks://localhost:9090/", "socks-off":"unset content.proxy", "pop-up":"set content.javascript.can_open_tabs_automatically true"}
 c.qt.args = ['ppapi-widevine-path=/usr/lib64/qt5/plugins/ppapi/libwidevinecdmadapter.so']
 c.auto_save.session = True
 

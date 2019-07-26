@@ -1,14 +1,8 @@
 startup_message off
+
 autodetach      on
 vbell off
-
 defscrollback 20000
-
 termcapinfo xterm* ti@:te@
 
-caption always " "
-# hardstatus alwayslastline "%{= kw}[ %{G}%H %{w}][ %=%{w}%?%-Lw%?%{g}(%{W}%n*%f %t%?(%u)%?%{g})%{w}%?%+Lw%?%?%= %{w}][%{W} %d/%m %{W}%c %{w}]"
-# hardstatus alwayslastline "%{.GK}%-w%{.RY}%n %t%{-}%+w %=%{..P}%H%{..B}%C%a"
-# hardstatus alwayslastline '%{= kW}%-Lw%{+b R}[%{-b W}%n*%t%?(%u)%?%{+b R}]%{-b kW}%+Lw%< %-=%{= kB}%1`%{= kR}%2` %{= kc}%H %d %M %0c%{-}'
-hardstatus alwayslastline '%{= kW}%-Lw%{+b R}[%{-b W}%n*%t%?(%u)%?%{+b R}]%{-b kW}%+Lw%< %-=%{= kc}%H %d %M %0c%{-}'
-
+hardstatus alwayslastline "%{= gk}[%H] %{gk} %-w%{= wk}%n %t%{-}%+w %=%{gk} [%d/%m %c]"

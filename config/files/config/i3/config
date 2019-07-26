@@ -177,7 +177,7 @@ bar {
 
 exec --no-startup-id xscreensaver
 exec --no-startup-id nm-applet
-exec --no-startup-id hexchat --minimize=2
+#exec --no-startup-id hexchat --minimize=2
 exec --no-startup-id nextcloud
 exec --no-startup-id blueman-applet
 exec --no-startup-id telegram-desktop -startintray
@@ -185,6 +185,7 @@ exec --no-startup-id pasystray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id flameshot
 exec --no-startup-id claws-mail
+exec --no-startup-id rambox
 
 # exec --no-startup-id i3-msg 'workspace 8; exec run_keybase'
 # exec --no-startup-id i3-msg 'workspace 1'
